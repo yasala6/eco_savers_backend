@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import autenticationRoute from './routes/authenticationRoutes.js';
+import foodRoutes from './routes/foodRoutes.js';
 
 import { db } from './config/dbConfig.js';
 
@@ -41,7 +42,8 @@ app.post('/contact', (req, res) => {
     });
 });
 
-app.use('/laundry_finder/autenticate', autenticationRoute);
+app.use('/eco_savers/autenticate', autenticationRoute);
+app.use('/eco_savers/api', foodRoutes);
 const PORT = process.env.PORT || 3009;
 app.listen(PORT, () => {
     console.log(`Server connected to port ${PORT}`);
