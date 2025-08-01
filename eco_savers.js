@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import autenticationRoute from './routes/authenticationRoutes.js';
 import foodRoutes from './routes/foodRoutes.js';
-import cartRoutes from './routes/foodRoutes.js';
+import cartRoutes from './routes/cartRoutes.js';
 import { db } from './config/dbConfig.js';
 
 dotenv.config();

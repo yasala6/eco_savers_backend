@@ -11,17 +11,19 @@ import {
 } from '../models/cartModel.js';
 
 export const getCartCtrl = function (req, res) {
-  const userId = req.query.user_id;
-  if (!userId) {
-    return res.status(400).json({ status: 400, message: "Missing user_id" });
-  }
-
-  getCartMdl(userId, function (err, results) {
-    if (err) {
-      return res.status(400).json({ status: 400, message: "Error retrieving cart" });
-    }
-    res.status(200).json({ status: 200, data: results });
-  });
+    const userId = req.user.id; // Assuming user ID is in the JWT token
+    
+    getCartMdl(userId, function (err, results) {
+        try {
+            if (err) {
+                res.status(400).json({ status: 400, message: "Error retrieving cart" });
+                return;
+            }
+            res.status(200).json({ status: 200, data: results });
+        } catch (err) {
+            res.status(500).json({ status: 500, message: "Internal server error" });
+        }
+    });
 };
 
 export const addToCartCtrl = function (req, res) {
