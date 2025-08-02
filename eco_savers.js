@@ -6,6 +6,8 @@ import autenticationRoute from './routes/authenticationRoutes.js';
 import foodRoutes from './routes/foodRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
 import { db } from './config/dbConfig.js';
+import orderRoutes from './routes/orderRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -45,6 +47,9 @@ app.post('/contact', (req, res) => {
 app.use('/eco_savers/autenticate', autenticationRoute);
 app.use('/eco_savers/api', foodRoutes);
 app.use('/eco_savers/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/admin', adminRoutes);
+
 const PORT = process.env.PORT || 3009;
 app.listen(PORT, () => {
     console.log(`Server connected to port ${PORT}`);
